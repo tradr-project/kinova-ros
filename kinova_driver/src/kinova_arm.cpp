@@ -88,12 +88,19 @@ KinovaArm::KinovaArm(KinovaComm &arm, const ros::NodeHandle &nodeHandle, const s
     }
 
 
-    if (finger_number_==3)
+    if (finger_number_==3 && robot_category_version_ >= 2)
     {
         // finger_angle_conv_ratio used to display finger position properly in Rviz
         // Approximative conversion ratio from finger position (0..6400) to joint angle
         // in radians (0.. 1.4) for 3 finger hand
         finger_conv_ratio_= 1.4 / 6400.0;
+    }
+    else if (finger_number_==3 && robot_category_version_ == 1)
+    {
+        // finger_angle_conv_ratio used to display finger position properly in Rviz
+        // Approximative conversion ratio from finger position (0..6400) to joint angle
+        // in radians (0.. 1.4) for 3 finger hand
+        finger_conv_ratio_= 1.4 / 60.0;
     }
     else if(finger_number_==2)
     {
@@ -340,14 +347,14 @@ void KinovaArm::publishJointAngles(void)
 
     if(finger_number_==2)
     {
-    	joint_state.position[joint_total_number_-2] = fingers.Finger1/6800*80*M_PI/180;
-    	joint_state.position[joint_total_number_-1] = fingers.Finger2/6800*80*M_PI/180;
+    	joint_state.position[joint_total_number_-2] = fingers.Finger1*(finger_conv_ratio_/1.4)*80*M_PI/180;
+    	joint_state.position[joint_total_number_-1] = fingers.Finger2*(finger_conv_ratio_/1.4)*80*M_PI/180;
     }
     else if(finger_number_==3)
     {
-    	joint_state.position[joint_total_number_-3] = fingers.Finger1/6800*80*M_PI/180;
-    	joint_state.position[joint_total_number_-2] = fingers.Finger2/6800*80*M_PI/180;
-    	joint_state.position[joint_total_number_-1] = fingers.Finger3/6800*80*M_PI/180;
+    	joint_state.position[joint_total_number_-3] = fingers.Finger1*(finger_conv_ratio_/1.4)*80*M_PI/180;
+    	joint_state.position[joint_total_number_-2] = fingers.Finger2*(finger_conv_ratio_/1.4)*80*M_PI/180;
+    	joint_state.position[joint_total_number_-1] = fingers.Finger3*(finger_conv_ratio_/1.4)*80*M_PI/180;
     }
 
 
