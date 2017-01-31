@@ -19,6 +19,8 @@
 
   <xacro:include filename="$(find kinova_description)/urdf/j2n4a300.xacro"/>
 
+  <xacro:arg name="simplified_collision" default="0" />
+
   <link name="root">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -36,8 +38,8 @@
     </collision>     
   </link>
 
-  <property name="robot_root" value="root" />
+  <xacro:property name="robot_root" value="root" />
 
-  <xacro:j2n4a300  base_parent="${robot_root}"/>
+  <xacro:j2n4a300  base_parent="${robot_root}" simplified_collision="$(arg simplified_collision)"/>
 
 </robot>
