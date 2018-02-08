@@ -20,7 +20,7 @@
 
     <xacro:property name="J_PI" value="3.1415926535897931" />
 
-    <xacro:macro name="kinova_armlink" params="link_name link_mesh ring_mesh:=ring_big use_ring_mesh:=false mesh_no">
+    <xacro:macro name="kinova_armlink" params="link_name link_mesh ring_mesh:=ring_big use_ring_mesh:=false mesh_no simplified_collision:=0">
         <link name="${link_name}">
             <visual>
                 <geometry>
@@ -41,15 +41,23 @@
                 </geometry>              
              </visual>
 	    </xacro:if>
-
+        <xacro:if value="${simplified_collision==0}">
             <collision>
                 <geometry>
                     <mesh
                         filename="package://kinova_description/meshes/${link_mesh}.dae"/>
                 </geometry>
             </collision>
+            </xacro:if>
 						<xacro:kinova_inertial mesh_no="${mesh_no}"/>	
-      </link>			
+      </xacro:if>
+	    <xacro:if value="${simplified_collision==1}">
+		    <xacro:include filename="$(find kinova_description)/meshes/${link_mesh}_simplified.xacro" />
+        </xacro:if>
+        <xacro:if value="${simplified_collision==2}">
+		    <xacro:include filename="$(find kinova_description)/meshes/${link_mesh}_coarse.xacro" />
+	    </xacro:if>
+        </link>
 		  	
     </xacro:macro>
 
@@ -103,9 +111,9 @@
     </xacro:macro>
 
 
-    <xacro:macro name="kinova_finger" params="prefix finger_number hand finger_origin_xyz finger_origin_rpy">
+    <xacro:macro name="kinova_finger" params="prefix finger_number hand finger_origin_xyz finger_origin_rpy simplified_collision:=0">
 
-        <xacro:kinova_armlink link_name="${prefix}link_finger_${finger_number}" link_mesh="finger_proximal" mesh_no="57"/>
+        <xacro:kinova_armlink link_name="${prefix}link_finger_${finger_number}" link_mesh="finger_proximal" mesh_no="57" simplified_collision="${simplified_collision}"/>
 
         <joint name="${prefix}joint_finger_${finger_number}" type="revolute">
             <parent link="${hand}"/>
@@ -127,7 +135,7 @@
 				
         
 
-        <xacro:kinova_armlink link_name="${prefix}link_finger_tip_${finger_number}" link_mesh="finger_distal" mesh_no="58"/>
+        <xacro:kinova_armlink link_name="${prefix}link_finger_tip_${finger_number}" link_mesh="finger_distal" mesh_no="58" simplified_collision="${simplified_collision}"/>
         
         <joint name="${prefix}joint_finger_tip_${finger_number}" type="fixed">
             <parent link="${prefix}link_finger_${finger_number}"/>

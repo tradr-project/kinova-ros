@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<root>
+    <collision>
+        <origin rpy="0 0 0" xyz="0 0 -0.05" />
+        <geometry>
+            <sphere radius="0.09" />
+        </geometry>
+    </collision> 
+</root>

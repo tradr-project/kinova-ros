@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<root>
+    <collision>
+        <origin rpy="${J_PI/2} 0 0" xyz="0 0.084 0" />
+        <geometry>
+            <cylinder length="0.04" radius="0.034" />
+        </geometry>
+    </collision>
+    <collision>
+        <origin rpy="0 0 0" xyz="0 0 -0.02" />
+        <geometry>
+            <cylinder length="0.04" radius="0.036" />
+        </geometry>
+    </collision>
+    <collision>
+        <origin rpy="0 0 0" xyz="0 0 -0.045" />
+        <geometry>
+            <cylinder length="0.01" radius="0.033" />
+        </geometry>
+    </collision>
+     <collision>
+         <origin rpy="${-1.35 * J_PI/4} 0 0" xyz="0 0.04 -0.017" />
+        <geometry>
+            <box size="0.079 0.05 0.080" />
+        </geometry>
+    </collision>
+</root>

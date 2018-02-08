@@ -1,0 +1,8 @@
+<root>
+    <collision>
+	<geometry>
+	    <mesh
+		filename="package://kinova_description/meshes/${link_mesh}.dae"/>
+	</geometry>
+    </collision>
+</root>

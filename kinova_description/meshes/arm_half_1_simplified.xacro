@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<root>
+    <collision>
+        <origin rpy="0 0 0" xyz="0 0 -0.015" />
+        <geometry>
+            <cylinder length="0.056" radius="0.045" />
+        </geometry>
+    </collision>
+    
+    <collision>
+        <origin rpy="0 0 0" xyz="0 ${-0.21/2.0} -0.00" /> 
+        <geometry>
+            <box size="0.085 0.21 0.085" />
+        </geometry>
+    </collision>
+</root>

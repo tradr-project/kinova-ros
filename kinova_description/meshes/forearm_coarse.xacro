@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<root>
+    <collision>
+        <origin rpy="${J_PI/2} 0 0" xyz="0 0.085 0" />
+        <geometry>
+            <cylinder length="0.26" radius="0.06" />
+        </geometry>
+    </collision>
+</root>

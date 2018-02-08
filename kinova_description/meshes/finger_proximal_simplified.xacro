@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<root>
+    <collision>
+        <origin rpy="0 0 0.1" xyz="${0.119/4} -0.008 0" />
+        <geometry>
+            <box size="0.06 0.024 0.024" />
+        </geometry>
+    </collision>
+</root>

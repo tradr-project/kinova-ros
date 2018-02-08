@@ -1,7 +1,14 @@
 <launch>
+<<<<<<< HEAD
 	<arg name="gui" default="True" />
 	<arg name="kinova_robotType" default="j2n6s300" />
 	<param name="robot_description" command="$(find xacro)/xacro.py '$(find kinova_description)/urdf/$(arg kinova_robotType)_standalone.xacro'" />
+=======
+	<arg name="gui" default="False" />
+	<arg name="kinova_robotType" default="j2n6a300" />
+	<arg name="simplified_collision" default="0" />
+	<param name="robot_description" command="$(find xacro)/xacro --inorder '$(find kinova_description)/urdf/$(arg kinova_robotType)_standalone.xacro' simplified_collision:=$(arg simplified_collision)" />
+>>>>>>> tradr/tradr
 	<param name="use_gui" value="$(arg gui)"/>
 	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
 		<param name="zeros/$(arg kinova_robotType)_joint_2" value="3.1415"/>

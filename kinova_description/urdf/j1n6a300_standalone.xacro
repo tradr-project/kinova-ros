@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!-- m1n6_2 refers to mico v1 6DOF non-spherical 2fingers -->
+<!-- j1n6a300 refers to jaco v1 6DOF non-spherical 3fingers -->
 
 
 <robot xmlns:xi="http://www.w3.org/2001/XInclude"
@@ -14,10 +14,10 @@
 	xmlns:rendering="http://playerstage.sourceforge.net/gazebo/xmlschema/#rendering"
     xmlns:renderable="http://playerstage.sourceforge.net/gazebo/xmlschema/#renderable"
     xmlns:physics="http://playerstage.sourceforge.net/gazebo/xmlschema/#physics"
-	xmlns:xacro="http://ros.org/wiki/xacro" name="m1n6s200">
+	xmlns:xacro="http://ros.org/wiki/xacro" name="j1n6a300">
 
 
-  <xacro:include filename="$(find kinova_description)/urdf/m1n6s200.xacro"/>
+  <xacro:include filename="$(find kinova_description)/urdf/j1n6a300.xacro"/>
 
   <xacro:arg name="simplified_collision" default="0" />
 
@@ -38,17 +38,8 @@
     </collision>     
   </link>
 
-  <!-- for gazebo -->
-  <link name="world"/>
-  
-  <joint name="connect_root_and_world" type="fixed">
-    <child link="root" />
-    <parent link="world" />
-    <origin xyz="0 0 0" rpy="0 0 0" />    
-  </joint> 
-
   <xacro:property name="robot_root" value="root" />
 
-  <xacro:m1n6s200  base_parent="${robot_root}" simplified_collision="$(arg simplified_collision)"/>
+  <xacro:j1n6a300  base_parent="${robot_root}"/>
 
 </robot>
