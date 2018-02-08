@@ -32,33 +32,29 @@
                 </material>
             </visual>
 
-	    <!-- Adding ring to the model -->	
-	         <xacro:if value="${use_ring_mesh}">
-	           <visual>
-                <geometry>
-                    <mesh
-                        filename="package://kinova_description/meshes/${ring_mesh}.STL"/>
-                </geometry>              
-             </visual>
-	    </xacro:if>
-        <xacro:if value="${simplified_collision==0}">
-            <collision>
-                <geometry>
-                    <mesh
-                        filename="package://kinova_description/meshes/${link_mesh}.dae"/>
-                </geometry>
-            </collision>
+	        <!-- Adding ring to the model -->	
+            <xacro:if value="${use_ring_mesh}">
+                <visual>
+                    <geometry>
+                    <mesh filename="package://kinova_description/meshes/${ring_mesh}.STL"/>
+                    </geometry>
+                </visual>
             </xacro:if>
-						<xacro:kinova_inertial mesh_no="${mesh_no}"/>	
-      </xacro:if>
-	    <xacro:if value="${simplified_collision==1}">
-		    <xacro:include filename="$(find kinova_description)/meshes/${link_mesh}_simplified.xacro" />
-        </xacro:if>
-        <xacro:if value="${simplified_collision==2}">
-		    <xacro:include filename="$(find kinova_description)/meshes/${link_mesh}_coarse.xacro" />
-	    </xacro:if>
+            <xacro:if value="${simplified_collision==0}">
+                <collision>
+                    <geometry>
+                        <mesh filename="package://kinova_description/meshes/${link_mesh}.dae"/>
+                    </geometry>
+                </collision>
+            </xacro:if>
+            <xacro:if value="${simplified_collision==1}">
+                <xacro:include filename="$(find kinova_description)/meshes/${link_mesh}_simplified.xacro" />
+            </xacro:if>
+            <xacro:if value="${simplified_collision==2}">
+                <xacro:include filename="$(find kinova_description)/meshes/${link_mesh}_coarse.xacro" />
+            </xacro:if>
+            <xacro:kinova_inertial mesh_no="${mesh_no}"/>
         </link>
-		  	
     </xacro:macro>
 
   <xacro:macro name="kinova_armjoint" params="joint_name type parent child joint_axis_xyz joint_origin_xyz joint_origin_rpy joint_lower_limit joint_upper_limit fixed:=false">
